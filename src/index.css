@@ -77,4 +77,8 @@
       hsl(256deg, 33%, 70%);
     background-size: 22px 22px;
   }
+
+  .nav-button {
+    @apply text-2xl rounded-full cursor-pointer hover:bg-slate-300 transition-all;
+  }
 }
