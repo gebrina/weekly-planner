@@ -2,9 +2,7 @@ import {
   format,
   getDate as getDateOfTheMonth,
   getDay,
-  getYear,
   getMonth,
-  getDaysInMonth,
 } from "date-fns";
 import { DateType } from "@/types";
 
@@ -28,7 +26,7 @@ export const getCurrentWeekDates = (currentWeekDate: Date): DateType[] => {
   const dates: DateType[] = [];
   while (startDateofWeek <= endDateofWeek) {
     dates.push({
-      id: startDateofWeek.getTime(),
+      id: startDateofWeek.getDate() + getMonth(startDateofWeek),
       date: startDateofWeek.getDate(),
       name: format(startDateofWeek, "EEEE"),
     });

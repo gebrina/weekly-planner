@@ -4,22 +4,20 @@ export type DateType = {
   name: string;
 };
 
-export type Task = {
-  id?: number;
-  task: string;
-  description?: string;
+export type DatesPlan = {
+  date: number;
+  plans: Plan[];
 };
 
-export type DatePlan = {
+export type Plan = {
   id?: number;
-  date: number;
-  name: string;
-  tasks?: Task[];
+  title: string;
+  description?: string;
 };
 
 export type Week = {
   id?: number;
   monthName: string;
   date: Date;
-  datesPlan?: DatePlan[];
+  datesPlan?: DateType[];
 };
