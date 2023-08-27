@@ -15,61 +15,24 @@ export const getDate = (date?: Date) => {
 };
 
 export const getCurrentWeekDates = (currentWeekDate: Date): DateType[] => {
-  const firstDateOftheWeek = getDateOfTheMonth(
-    getDate().setDate(
-      getDateOfTheMonth(currentWeekDate) - getDay(currentWeekDate)
+  let startDateofWeek = new Date(
+    currentWeekDate.setDate(
+      getDateOfTheMonth(currentWeekDate) - getDay(currentWeekDate) + 1
     )
   );
-  const lastDateOftheWeek = getDateOfTheMonth(
-    getDate().setDate(
-      getDateOfTheMonth(currentWeekDate) - getDay(currentWeekDate) + 6
+  const endDateofWeek = new Date(
+    currentWeekDate.setDate(
+      getDateOfTheMonth(currentWeekDate) - getDay(currentWeekDate) + 5
     )
   );
-
-  const currentWeekDates: DateType[] = [];
-  const array = new Uint32Array(1);
-
-  if (firstDateOftheWeek > lastDateOftheWeek) {
-    const daysInMonth = new Date(
-      getYear(currentWeekDate),
-      getMonth(currentWeekDate),
-      0
-    ).getDate();
-    for (let i = firstDateOftheWeek; i <= daysInMonth; i++) {
-      const currentWeekDate = new Date(
-        getYear(getDate()),
-        getMonth(getDate()),
-        i
-      );
-      currentWeekDates.push({
-        id: crypto.getRandomValues(array)[0],
-        date: i,
-        name: format(currentWeekDate, "EEEE"),
-      });
-    }
-    for (let i = 1; i <= lastDateOftheWeek; i++) {
-      currentWeekDates.push({
-        id: crypto.getRandomValues(array)[0],
-        date: i,
-        name: format(
-          new Date(getYear(currentWeekDate), getMonth(currentWeekDate), i),
-          "EEEE"
-        ),
-      });
-    }
-  } else {
-    for (let i = firstDateOftheWeek; i <= lastDateOftheWeek; i++) {
-      const currentWeekDate = new Date(
-        getYear(getDate()),
-        getMonth(getDate()),
-        i
-      );
-      currentWeekDates.push({
-        id: crypto.getRandomValues(array)[0],
-        date: i,
-        name: format(currentWeekDate, "EEEE"),
-      });
-    }
+  const dates: DateType[] = [];
+  while (startDateofWeek <= endDateofWeek) {
+    dates.push({
+      id: startDateofWeek.getTime(),
+      date: startDateofWeek.getDate(),
+      name: format(startDateofWeek, "EEEE"),
+    });
+    startDateofWeek.setDate(startDateofWeek.getDate() + 1);
   }
-  return currentWeekDates;
+  return dates;
 };

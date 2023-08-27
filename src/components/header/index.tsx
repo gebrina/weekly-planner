@@ -12,7 +12,7 @@ const Header = () => {
           <BiSkipPrevious onClick={getPrevWeek} className="nav-button" />
           <p>
             {currentWeek?.monthName}
-            <span className="text-muted bg-green-100 py-1 px-2 text-green-600 ml-2">
+            <span className="text-md bg-green-100 py-1 px-2 text-green-600 ml-2">
               Week {currentWeek?.id}
             </span>
           </p>
