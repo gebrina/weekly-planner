@@ -1,4 +1,3 @@
-import React from "react";
 import { format, getDate as getTodayDate } from "date-fns";
 import { usePlanContext } from "@/context";
 import { getDate } from "@/utils";
@@ -6,19 +5,16 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-  DialogDescription,
   DialogHeader,
 } from "@/components/ui/dialog";
 import { BiPlus } from "react-icons/bi";
 import AddPlan from "../add-plan";
-import { getAllPlans } from "@/api";
 import { DatesPlan } from "@/types";
 import PlanCard from "./card";
 
 const Plan = () => {
-  const { currentWeekDates, currentWeek } = usePlanContext();
+  const { plans, currentWeekDates, currentWeek } = usePlanContext();
   const today = getTodayDate(getDate());
-  const plans = getAllPlans();
 
   return (
     <section>
@@ -32,14 +28,16 @@ const Plan = () => {
                 <span className="text-green-600 px-2 bg-green-100">Today</span>
               )}
             </div>
-            {plans?.map((plan: DatesPlan) => (
-              <div className="flex flex-col" key={plan.date.toString()}>
-                {plan.date == date.id &&
-                  plan.plans.map((plan) => (
-                    <PlanCard key={plan.id} plan={plan} />
+
+            {plans?.map((planDate: DatesPlan) => (
+              <div className="flex flex-col" key={planDate.date.toString()}>
+                {planDate.date == date.id &&
+                  planDate.plans.map((plan) => (
+                    <PlanCard key={plan.id} planDate={planDate} plan={plan} />
                   ))}
               </div>
             ))}
+
             <Dialog>
               <DialogTrigger className="w-full mt-2 flex items-center scale-0 text-sm justify-center gap-2 p-2 hover:bg-blue-50 bg-transparent  group-hover:scale-100 text-blue-400">
                 <BiPlus />

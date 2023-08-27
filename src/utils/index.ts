@@ -25,12 +25,23 @@ export const getCurrentWeekDates = (currentWeekDate: Date): DateType[] => {
   );
   const dates: DateType[] = [];
   while (startDateofWeek <= endDateofWeek) {
+    const dateforId = startDateofWeek;
+    dateforId.setHours(0);
+    dateforId.setMinutes(0);
+    dateforId.setSeconds(0);
+    dateforId.setMilliseconds(0);
     dates.push({
-      id: startDateofWeek.getDate() + getMonth(startDateofWeek),
+      id: dateforId.getTime(),
       date: startDateofWeek.getDate(),
       name: format(startDateofWeek, "EEEE"),
     });
     startDateofWeek.setDate(startDateofWeek.getDate() + 1);
   }
   return dates;
+};
+
+export const getRandomNumbers = () => {
+  const unitArray = new Uint32Array(1);
+  const randomNumber = crypto.getRandomValues(unitArray);
+  return randomNumber;
 };

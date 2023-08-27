@@ -2,12 +2,15 @@ import { addWeeks, format, getMonth, getWeekOfMonth, subWeeks } from "date-fns";
 import { FC, createContext, useContext, useState } from "react";
 import { DateType, Week } from "@/types";
 import { getCurrentWeekDates, getDate } from "@/utils";
+import { getAllPlans } from "@/api";
 
 type TWeeklyPlanContext = {
   currentWeek?: Week;
   getNextWeek?: () => void;
   getPrevWeek?: () => void;
   currentWeekDates?: DateType[];
+  plans?: any[];
+  setPlans?: Function;
 };
 
 const WeeklyPlanContext = createContext<TWeeklyPlanContext>({});
@@ -21,6 +24,8 @@ const WeeklyPlanContextProvider: FC<{ children: React.ReactNode }> = ({
     monthName: format(getDate(), "MMMM"),
     datesPlan: [],
   });
+  const [plans, setPlans] = useState(getAllPlans());
+
   const [currentWeekDates, setCurrentWeekDates] = useState<DateType[]>(
     getCurrentWeekDates(currentWeek.date)
   );
@@ -56,7 +61,14 @@ const WeeklyPlanContextProvider: FC<{ children: React.ReactNode }> = ({
   };
   return (
     <WeeklyPlanContext.Provider
-      value={{ currentWeek, getNextWeek, getPrevWeek, currentWeekDates }}
+      value={{
+        currentWeek,
+        getNextWeek,
+        getPrevWeek,
+        currentWeekDates,
+        plans,
+        setPlans,
+      }}
     >
       {children}
     </WeeklyPlanContext.Provider>

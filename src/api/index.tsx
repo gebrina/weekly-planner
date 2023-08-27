@@ -23,6 +23,15 @@ export const getAllPlans = () => {
   return plans;
 };
 
-export const removePlan = (plan: Plan) => {
-  const savedPlans = JSON.parse(localStorage.getItem("plans") ?? "");
+export const removePlan = (plan?: DatesPlan) => {
+  const savedPlans = JSON.parse(localStorage.getItem("plans") ?? "[]");
+  const currentPlanIndex = savedPlans.findIndex(
+    (planDate: DatesPlan) => planDate.date == plan?.date
+  );
+  console.log(plan);
+  if (currentPlanIndex !== -1) {
+    const planTobeDelete = savedPlans[currentPlanIndex];
+    const planIndex = planTobeDelete.plans.indexOf(plan?.plans);
+    console.log(planIndex);
+  }
 };
