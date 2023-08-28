@@ -28,7 +28,6 @@ export const removePlan = (plan?: DatesPlan) => {
   const currentPlanIndex = savedPlans.findIndex(
     (planDate: DatesPlan) => planDate.date == plan?.date
   );
-  console.log(plan);
   if (currentPlanIndex !== -1) {
     const planTobeDelete = savedPlans[currentPlanIndex];
     const planIndex = planTobeDelete.plans.indexOf(plan?.plans);

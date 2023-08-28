@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { BiSkipPrevious, BiSkipNext } from "react-icons/bi";
 import { Button } from "../ui/button";
 import { usePlanContext } from "@/context";
 
 const Header = () => {
-  const { currentWeek, getNextWeek, getPrevWeek } = usePlanContext();
+  const navigate = useNavigate();
+  const { currentWeek, getNextWeek, getPrevWeek, resetCurrentWeek } =
+    usePlanContext();
 
   return (
     <header className="bg-white shadow">
@@ -19,8 +22,12 @@ const Header = () => {
           <BiSkipNext onClick={getNextWeek} className="nav-button" />
         </section>
         <section className="flex items-center justify-around gap-4 py-3">
-          <Button variant={"outline"}>All items</Button>
-          <Button variant={"outline"}>Today</Button>
+          <Button variant={"outline"} onClick={() => navigate("plans")}>
+            All Plans
+          </Button>
+          <Button variant={"outline"} onClick={resetCurrentWeek}>
+            Today
+          </Button>
         </section>
       </section>
     </header>
