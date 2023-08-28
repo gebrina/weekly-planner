@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+# React - Web Based Date Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Manage your Plans Easily and Effectively
 
-Currently, two official plugins are available:
+## Used technologies and packages
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. React + Vite + TypeScript
+2. Shadcn - Tailwindcss
+3. date-fns
+4. localstorage - for storing plans
 
-## Expanding the ESLint configuration
+### How to run the project
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. clone the project from this repo using
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```
+git clone https://github.com/gebrina/weekly-planner.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. open the cloned project with you favorite code editor
+3. open terminal and change directory to cloned project
+4. install required dependencies using
+   `npm install`
+5. run run the project using `npm run dev`
