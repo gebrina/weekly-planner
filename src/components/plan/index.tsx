@@ -1,4 +1,4 @@
-import { format, getDate as getTodayDate } from "date-fns";
+import { getDate as getTodayDate } from "date-fns";
 import { usePlanContext } from "@/context";
 import { getDate } from "@/utils";
 import {

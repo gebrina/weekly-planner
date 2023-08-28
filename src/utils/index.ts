@@ -1,9 +1,4 @@
-import {
-  format,
-  getDate as getDateOfTheMonth,
-  getDay,
-  getMonth,
-} from "date-fns";
+import { format, getDate as getDateOfTheMonth, getDay } from "date-fns";
 import { DateType } from "@/types";
 
 export const getDate = (date?: Date) => {

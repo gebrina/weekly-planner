@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardContent,
   CardDescription,
-  CardFooter,
   CardTitle,
 } from "@/components/ui/card";
 import { DatesPlan, Plan } from "@/types";
