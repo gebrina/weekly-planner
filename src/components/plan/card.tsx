@@ -9,16 +9,19 @@ import {
 import { DatesPlan, Plan } from "@/types";
 import { FC } from "react";
 import { BiTrash } from "react-icons/bi";
-import { removePlan } from "@/api";
+import { getAllPlans, removePlan } from "@/api";
+import { usePlanContext } from "@/context";
 
 type PlanCardProps = {
   plan: Plan;
-  planDate?: DatesPlan;
+  planDate: DatesPlan;
 };
 
 const PlanCard: FC<PlanCardProps> = ({ plan, planDate }) => {
+  const { setPlans } = usePlanContext();
   const handleDeletePlan = () => {
-    removePlan(planDate);
+    removePlan({ planId: plan.id ?? 0, dateId: planDate?.date });
+    setPlans && setPlans(getAllPlans());
   };
 
   return (

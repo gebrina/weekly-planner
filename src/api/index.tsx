@@ -23,14 +23,26 @@ export const getAllPlans = () => {
   return plans;
 };
 
-export const removePlan = (plan?: DatesPlan) => {
+export const removePlan = ({
+  planId,
+  dateId,
+}: {
+  planId: number;
+  dateId: number;
+}) => {
   const savedPlans = JSON.parse(localStorage.getItem("plans") ?? "[]");
   const currentPlanIndex = savedPlans.findIndex(
-    (planDate: DatesPlan) => planDate.date == plan?.date
+    (planDate: DatesPlan) => planDate.date == dateId
   );
+
   if (currentPlanIndex !== -1) {
     const planTobeDelete = savedPlans[currentPlanIndex];
-    const planIndex = planTobeDelete.plans.indexOf(plan?.plans);
-    console.log(planIndex);
+    const filterdPlans = planTobeDelete.plans.filter(
+      (plan: Plan) => plan.id !== planId
+    );
+    planTobeDelete.plans = filterdPlans;
+    savedPlans[currentPlanIndex] = planTobeDelete;
+    const strigifiedSavedPlans = JSON.stringify(savedPlans ?? []);
+    localStorage.setItem("plans", strigifiedSavedPlans);
   }
 };

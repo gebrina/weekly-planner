@@ -48,8 +48,7 @@ const Plan = () => {
                   <div className="flex items-center">
                     <h1>Add Plan</h1>
                     <h1 className="mx-2 bg-green-100 py-1/2 px-2 text-green-500 text-sm ">
-                      {format(currentWeek?.date.getTime() ?? 1, "MMMM")}{" "}
-                      {date.date}
+                      {currentWeek?.monthName} &nbsp; {date.date}
                     </h1>
                   </div>
                 </DialogHeader>
